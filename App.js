@@ -6,12 +6,38 @@ import Game from './screens/Game';
 import Confirm from './screens/Confirm';
 
 export default function App() {
+  const [hasUser, setHasUser] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+  
+  
+  const rightScreen = () => {
+    // the conditional rendering
+    if(hasUser === false && confirmed === false){
+      return <Start/>
+    }
+    
+    if(hasUser === true && confirmed === false){
+      return <Confirm/>
+    }
+    if(hasUser === true && confirmed === true){
+      return <Game/>
+    }
+    else{
+      // This should never happen
+      return <Text>This state is impossible!</Text>
+    }
+  }
+  
+  
   return (
     <View style={styles.container}>
-      <Start/>
-      <Game/>
-      <Confirm/>
-      <Text>this is app.js</Text>
+      {
+        rightScreen()
+      }
+      
+      
+      
+      
       <StatusBar style="auto" />
     </View>
   );
