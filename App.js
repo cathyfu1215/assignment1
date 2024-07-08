@@ -15,7 +15,7 @@ export default function App() {
   const rightScreen = () => {
     // the conditional rendering
     if(hasUser === false && confirmed === false){
-      return <Start/>
+      return <Start setHasUser={setHasUser}/>
     }
     
     if(hasUser === true && confirmed === false){
