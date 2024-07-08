@@ -8,6 +8,8 @@ import Confirm from './screens/Confirm';
 export default function App() {
   const [hasUser, setHasUser] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   
   
   const rightScreen = () => {
