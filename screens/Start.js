@@ -1,11 +1,11 @@
-import React from 'react'
-import { Text } from 'react-native'
-import Card from '../components/Card'
-import { View } from 'react-native'
-import {TextInput } from 'react-native'
+import React from 'react';
+import { Text } from 'react-native';
+import Card from '../components/Card';
+import { View } from 'react-native';
+import {TextInput } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { useState } from 'react';
-import MyButton from '../components/MyButton'
+import MyButton from '../components/MyButton';
 
 function Start(props) {
     const [isChecked, setChecked] = useState(false);
@@ -14,6 +14,8 @@ function Start(props) {
     const [errorName, setErrorName] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
 
+    const [nameValid,setNameValid] = useState(false);
+    const [emailValid,setEmailValid] = useState(false);
     /* 
     reset button: clear all text inputs and uncheck the checkbox 
     */
@@ -24,16 +26,11 @@ function Start(props) {
     }
 
     /* 
-     start button: go to the next screen if there are no errors
-     I choose to use alert to show the error message, this is not required in the assignment
+     start button: go to the next screen
+     Note: I choose to validate the name and email before enabling the start button
      */
     function handleStart(){
-        if(errorName ==='' && errorEmail===''){
             props.setHasUser(true);
-        }
-        else{
-            alert('Please fix the errors in the form!');
-        }
     }
 
     /*
@@ -43,6 +40,7 @@ function Start(props) {
         const regex = /^[^\d]{2,}$/;
         if(inputName && regex.test(inputName)){
             setErrorName('');
+            setNameValid(true);
         }
         else{
             setErrorName('Invalid name!');
@@ -50,12 +48,13 @@ function Start(props) {
     }
 
     /*
-    I use regex to validate the email
+    I use regex to validate the email, if the email is valid, I clear the error message and return true
     */
     function validateEmail(){
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if(inputEmail && regex.test(inputEmail)){
             setErrorEmail('');
+            setEmailValid(true);
         }
         else{
             setErrorEmail('Invalid email!');
@@ -83,7 +82,7 @@ function Start(props) {
 
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <MyButton  onPress={handleReset} title="Reset"/>
-              <MyButton  onPress={handleStart} title="Start" disabled ={!isChecked}/>
+              <MyButton  onPress={handleStart} title="Start" disabled ={(!isChecked) || (!nameValid) || (!emailValid)}/>
               </View>
          </Card>
     </View>
