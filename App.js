@@ -4,22 +4,27 @@ import React, { useState } from 'react';
 import Start from './screens/Start';
 import Game from './screens/Game';
 import Confirm from './screens/Confirm';
+import { Modal } from 'react-native';
 
 export default function App() {
   const [hasUser, setHasUser] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+
+  const [modalVisible, setModalVisible] = useState(false);
   
   
   const rightScreen = () => {
     // the conditional rendering
     if(hasUser === false && confirmed === false){
-      return <Start setHasUser={setHasUser}/>
+      return <Start setHasUser={setHasUser} setName={setName} setEmail={setEmail}/>
     }
     
     if(hasUser === true && confirmed === false){
-      return <Confirm/>
+      console.log('name:',name);
+      console.log('email:',email);
+      return <Modal visible={modalVisible}><Confirm name={name} email={email}/></Modal>
     }
     if(hasUser === true && confirmed === true){
       return <Game/>

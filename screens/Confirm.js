@@ -3,11 +3,13 @@ import { Text } from 'react-native'
 import Card from '../components/Card'
 import { View } from 'react-native'
 
-function Confirm() {
+function Confirm(props) {
   return (
     <View>
-    <Text>I am the confirm screen!</Text>
-    <Card/>
+    
+    <Card>
+    {props.children}
+    </Card>
     </View>
    
   )

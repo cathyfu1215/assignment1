@@ -9,13 +9,16 @@ import MyButton from '../components/MyButton';
 
 function Start(props) {
     const [isChecked, setChecked] = useState(false);
+    
     const [inputName, setInputName] = useState('');
     const [inputEmail, setInputEmail] = useState('');
+    
     const [errorName, setErrorName] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
 
     const [nameValid,setNameValid] = useState(false);
     const [emailValid,setEmailValid] = useState(false);
+
     /* 
     reset button: clear all text inputs and uncheck the checkbox 
     */
@@ -26,11 +29,24 @@ function Start(props) {
     }
 
     /* 
-     start button: go to the next screen
-     Note: I choose to validate the name and email before enabling the start button
+     start button:if everything is valid, go to the next screen, 
+           otherwise show an error message below invalid fields
      */
     function handleStart(){
+        if(nameValid && emailValid){
+
             props.setHasUser(true);
+            props.setName(inputName);
+            props.setEmail(inputEmail);
+        }
+        else{
+            if(!nameValid){
+                setErrorName('Invalid name!');
+            }
+            if(!emailValid){
+                setErrorEmail('Invalid email!');
+            }
+        }
     }
 
     /*
@@ -48,7 +64,8 @@ function Start(props) {
     }
 
     /*
-    I use regex to validate the email, if the email is valid, I clear the error message and return true
+    I use regex to validate the email, if the email is valid, 
+    I clear the error message and return true
     */
     function validateEmail(){
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -82,7 +99,7 @@ function Start(props) {
 
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <MyButton  onPress={handleReset} title="Reset"/>
-              <MyButton  onPress={handleStart} title="Start" disabled ={(!isChecked) || (!nameValid) || (!emailValid)}/>
+              <MyButton  onPress={handleStart} title="Start" disabled ={!isChecked}/>
               </View>
          </Card>
     </View>
