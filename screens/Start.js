@@ -6,6 +6,8 @@ import {TextInput } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { useState } from 'react';
 import MyButton from '../components/MyButton';
+import { Modal } from 'react-native';
+import Confirm from './Confirm';
 
 function Start(props) {
     const [isChecked, setChecked] = useState(false);
@@ -34,10 +36,9 @@ function Start(props) {
      */
     function handleStart(){
         if(nameValid && emailValid){
-
-            props.setHasUser(true);
             props.setName(inputName);
             props.setEmail(inputEmail);
+            props.setModalVisible(true);
         }
         else{
             if(!nameValid){
@@ -102,6 +103,10 @@ function Start(props) {
               <MyButton  onPress={handleStart} title="Start" disabled ={!isChecked}/>
               </View>
          </Card>
+         <Modal visible={props.modalVisible} transparent={true}>
+                <Confirm name={props.name} email={props.email} setHasUser={props.setHasUser}
+                        setModalVisible={props.setModalVisible}/>
+        </Modal>
     </View>
   )
 }
