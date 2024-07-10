@@ -6,7 +6,7 @@ import {TextInput } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { useState } from 'react';
 import MyButton from '../components/MyButton';
-import { Modal } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Confirm from './Confirm';
 
 function Start(props) {
@@ -86,7 +86,7 @@ function Start(props) {
     }
     
   return (
-    <View>
+    <View style={styles.container}>
          <Text>Welcome</Text>
          <Card>
               <Text>Name</Text>
@@ -116,5 +116,14 @@ function Start(props) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    });
 
 export default Start

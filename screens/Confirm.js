@@ -1,6 +1,5 @@
 import React from 'react'
-import {  View ,Text,Modal } from 'react-native'
-import Card from '../components/Card'
+import {  View ,Text,Modal, StyleSheet } from 'react-native'
 import MyButton from '../components/MyButton'
 
 function Confirm(props) {
@@ -16,10 +15,10 @@ function handleGoBack(){
 
 
   return (
-    
-    <Modal animationType='slide' visible={props.modalVisible} transparent={true}>
     <View>
-    <Card>
+    <Modal visible={props.modalVisible} transparent={true}>
+    <View style={styles.confirmModal}>
+    
       <Text>Hello {props.name}</Text>
       <Text>Here is the email that you entered:{props.email}</Text>
       <Text>If it is not correct, please go back and enter again.</Text>
@@ -28,12 +27,36 @@ function handleGoBack(){
             <MyButton  onPress={handleContinue} title="Continue"/>
       </View>
       
-    </Card>
     </View>
     </Modal>
+    </View>
     
    
   )
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  card:{
+    padding:10,
+    margin:10,
+    backgroundColor:'lightblue',
+    borderRadius:10,
+  },
+
+  confirmModal:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'lightgrey',
+    borderRadius:10,
+    height:'50%',
+  },
+});
+
 export default Confirm
+

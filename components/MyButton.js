@@ -6,7 +6,7 @@ const MyButton = ({ onPress, title, disabled }) => (
     <Pressable 
       onPress={onPress} 
       disabled={disabled} 
-      style={{ backgroundColor: disabled ? '#ccc' : '#841584', padding: 10, alignItems: 'center' }}
+      style={{ backgroundColor: disabled ? '#ccc' : 'blue', padding: 10, alignItems: 'center' }}
     >
       <Text style={{ color: 'white' }}>{title}</Text>
     </Pressable>
