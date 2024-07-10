@@ -1,7 +1,6 @@
 import React from 'react'
-import { Text } from 'react-native'
+import {  View ,Text,Modal } from 'react-native'
 import Card from '../components/Card'
-import { View } from 'react-native'
 import MyButton from '../components/MyButton'
 
 function Confirm(props) {
@@ -15,9 +14,11 @@ function handleGoBack(){
   props.setModalVisible(false);
 }
 
+
   return (
-    <View>
     
+    <Modal animationType='slide' visible={props.modalVisible} transparent={true}>
+    <View>
     <Card>
       <Text>Hello {props.name}</Text>
       <Text>Here is the email that you entered:{props.email}</Text>
@@ -29,6 +30,8 @@ function handleGoBack(){
       
     </Card>
     </View>
+    </Modal>
+    
    
   )
 }

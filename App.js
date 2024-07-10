@@ -10,34 +10,20 @@ export default function App() {
   
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-
-  const [modalVisible, setModalVisible] = useState(false);
   
   
   const rightScreen = () => {
     // the conditional rendering
     if(hasUser === false){
-      return <Start setModalVisible={setModalVisible} modalVisible={modalVisible}
+      return <Start name = {name} email={email}
                     setName={setName} setEmail={setEmail}
                     setHasUser={setHasUser}/>
     }
     
-    /*
-      console.log('name:',name);
-      console.log('email:',email);
-      return <Modal visible={modalVisible} transparent={true}>
-                <Confirm name={name} email={email} setHasUser={setHasUser}
-                         setConfirmed={setConfirmed} setModalVisible={setModalVisible}/>
-            </Modal>
-    */
-    
-    if(hasUser === true){
+    else{
       return <Game/>
     }
-    else{
-      // This should never happen
-      return <Text>This state is impossible!</Text>
-    }
+    
   }
   
   
@@ -46,10 +32,6 @@ export default function App() {
       {
         rightScreen()
       }
-      
-      
-      
-      
       <StatusBar style="auto" />
     </View>
   );

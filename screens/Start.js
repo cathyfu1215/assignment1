@@ -21,6 +21,8 @@ function Start(props) {
     const [nameValid,setNameValid] = useState(false);
     const [emailValid,setEmailValid] = useState(false);
 
+    const [modalVisible, setModalVisible] = useState(false);
+
     /* 
     reset button: clear all text inputs and uncheck the checkbox 
     */
@@ -38,7 +40,7 @@ function Start(props) {
         if(nameValid && emailValid){
             props.setName(inputName);
             props.setEmail(inputEmail);
-            props.setModalVisible(true);
+            setModalVisible(true);
         }
         else{
             if(!nameValid){
@@ -78,6 +80,10 @@ function Start(props) {
             setErrorEmail('Invalid email!');
         }
     }
+
+    function setModalNotVisible(){
+        setModalVisible(false);
+    }
     
   return (
     <View>
@@ -103,10 +109,10 @@ function Start(props) {
               <MyButton  onPress={handleStart} title="Start" disabled ={!isChecked}/>
               </View>
          </Card>
-         <Modal visible={props.modalVisible} transparent={true}>
-                <Confirm name={props.name} email={props.email} setHasUser={props.setHasUser}
-                        setModalVisible={props.setModalVisible}/>
-        </Modal>
+         
+        <Confirm name={props.name} email={props.email} setHasUser={props.setHasUser}
+                setModalVisible={setModalNotVisible} modalVisible={modalVisible}/>
+       
     </View>
   )
 }
