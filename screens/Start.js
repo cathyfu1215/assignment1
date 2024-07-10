@@ -84,7 +84,7 @@ function Start(props) {
     function setModalNotVisible(){
         setModalVisible(false);
     }
-    
+
   return (
     <View style={styles.container}>
          <Text>Welcome</Text>
