@@ -22,7 +22,7 @@ export default function App() {
     }
     
     else{
-      return <Game/>
+      return <Game setHasUser={setHasUser}/>
     }
     
   }

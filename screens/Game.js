@@ -4,7 +4,8 @@ import Card from '../components/Card'
 import { View } from 'react-native'
 import MyButton from '../components/MyButton'
 import { useState } from 'react'
-import { TextInput } from 'react-native'
+import { TextInput,Alert } from 'react-native'
+import { Image } from 'react-native'
 
 function Game(props) {
 
@@ -19,10 +20,11 @@ function Game(props) {
 
   const [textInput, setTextInput] = useState('');
 
+  const [gameOverMessage, setGameOverMessage] = useState('');
 
   function handleRestart(){
     console.log('handle restart')
-
+    props.setHasUser(false);
   }
 
   function handleHint(){
@@ -30,8 +32,38 @@ function Game(props) {
   }
 
   function handleSubmitGuess(){
-    console.log('handle submit guess')
+    if(userGuess === secretNumber){
+      setGameState('win');
+    }
+    else{
+      setAttemptsLeft(attemptsLeft - 1);
+      if(attemptsLeft === 1){
+        setGameOverMessage('You have no more attempts left');
+        setGameState('lose');
+
+      }
+      else{
+        setGameState('guessedWrong');
+      }
   }
+}
+
+function handleGuessAgain(){
+  setGameState('guessing');
+  setTextInput('');
+
+}
+
+function handleEndGame(){
+  setGameState('lose');
+}
+
+function handleNewGame(){
+  setSecretNumber(Math.floor(Math.random() * 100) + 1);
+  setAttemptsLeft(4);
+  setGameState('guessing');
+  setTextInput('');
+}
 
 
   function verifyInput(){
@@ -39,14 +71,14 @@ function Game(props) {
     if(isNaN(textInput)){
       setTextInput('');
       //create an alert that says 'Please enter a number'
-      alert('please enter a number')
+      Alert.alert('please enter a number')
     }
     else{
       // if the number is not between 1 and 100
       if(parseInt(textInput) < 1 || parseInt(textInput) > 100){
         setTextInput('');
         //create an alert that says 'Please enter a number between 1 and 100'
-        alert('Please enter a number between 1 and 100');
+        Alert.alert('Please enter a number between 1 and 100');
       }
       else{
         setUserGuess(parseInt(textInput));
@@ -56,6 +88,7 @@ function Game(props) {
   }
 
   function guessingCard(){
+    console.log('secret number: ', secretNumber);
     return (
       <Card>
           <Text>Guess A Number Between 1 & 100</Text>
@@ -75,11 +108,9 @@ function Game(props) {
     return (
       <Card>
           <Text>Guess Wrong</Text>
-          <Text>Attempts left: {attemptsLeft}</Text>
-          <Text>Timer: {timeLeft}</Text>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-            <MyButton title="Use a Hint" onPress={handleHint}/>
-            <MyButton title="Submit guess" onPress={handleSubmitGuess}/>
+            <MyButton title="Guess Again" onPress={handleGuessAgain}/>
+            <MyButton title="End the Game" onPress={handleEndGame}/>
           </View>
         </Card>
     )
@@ -88,12 +119,11 @@ function Game(props) {
   function winCard(){
     return (
       <Card>
-          <Text>You Win!</Text>
-          <Text>Attempts left: {attemptsLeft}</Text>
-          <Text>Timer: {timeLeft}</Text>
+          <Text>You Guessed Correct!</Text>
+          <Text>Attempts used: {5-attemptsLeft}</Text>
+          <Image style={{width: 100, height:100}} source={{uri:`https://picsum.photos/id/${secretNumber}/100/100`}}/>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-            <MyButton title="Use a Hint" onPress={handleHint}/>
-            <MyButton title="Submit guess" onPress={handleSubmitGuess}/>
+            <MyButton title="New Game" onPress={handleNewGame}/>
           </View>
         </Card>
     )
@@ -102,13 +132,9 @@ function Game(props) {
   function loseCard(){
     return (
       <Card>
-          <Text>You Lose!</Text>
-          <Text>Attempts left: {attemptsLeft}</Text>
-          <Text>Timer: {timeLeft}</Text>
-          <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-            <MyButton title="Use a Hint" onPress={handleHint}/>
-            <MyButton title="Submit guess" onPress={handleSubmitGuess}/>
-          </View>
+          <Text>The Game is Over!</Text>
+          <Image style={{width: 100, height:100}} source={require('../assets/sadSmile.jpg')}/>
+          <Text>{gameOverMessage}</Text>
         </Card>
     )
   }
