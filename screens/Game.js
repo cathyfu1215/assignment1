@@ -45,7 +45,12 @@ function Game(props) {
   }
 
   function handleHint(){
-    console.log('handle hint')
+    if(secretNumber <=50){
+      setHint('The number is between 1 and 50');
+    }
+    else{
+      setHint('The number is between 51 and 100');
+    }
   }
 
   function handleSubmitGuess(){
@@ -80,6 +85,7 @@ function handleNewGame(){
   setAttemptsLeft(4);
   setGameState('guessing');
   setTextInput('');
+  setTimeLeft(60);
 }
 
 
@@ -111,6 +117,7 @@ function handleNewGame(){
           <Text>Guess A Number Between 1 & 100</Text>
           <TextInput value={textInput} onChangeText={(textInput)=>setTextInput(textInput)}
                       onEndEditing={(textInput)=>verifyInput(textInput)} placeholder='enter your guess'/>
+          <Text>{hint}</Text>
           <Text>Attempts left: {attemptsLeft}</Text>
           <Text>Timer: {timeLeft}</Text>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
