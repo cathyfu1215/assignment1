@@ -32,11 +32,6 @@ export default function App() {
   
   return (
     <View style={styles.container}>
-     {/* <LinearGradient
-        // Background Linear Gradient
-        colors={['yellow', 'white']}
-        style={styles.background}
-    /> */}
       {
         rightScreen()
       }
@@ -51,11 +46,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
  
   },
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 300,
-  },
+ 
 });

@@ -125,8 +125,8 @@ function handleNewGame(){
           <TextInput value={textInput} onChangeText={(textInput)=>setTextInput(textInput)}
                       onEndEditing={(textInput)=>verifyInput(textInput)} placeholder='enter your guess'/>
           <Text style={styles.hint}>{hint}</Text>
-          <Text>Attempts left: {attemptsLeft}</Text>
-          <Text>Timer: {timeLeft}</Text>
+          <Text style={styles.text}>Attempts left: {attemptsLeft}</Text>
+          <Text style={styles.text}>Timer: {timeLeft}</Text>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
             <MyButton title="Use a Hint" onPress={handleHint}/>
             <MyButton title="Submit guess" onPress={handleSubmitGuess}/>
@@ -151,8 +151,8 @@ function handleNewGame(){
     return (
       <Card>
           <Header>You Guessed Correct!</Header>
-          <Text>Attempts used: {5-attemptsLeft}</Text>
-          <Image style={{width: 100, height:100}} source={{uri:`https://picsum.photos/id/${secretNumber}/100/100`}}/>
+          <Text style={styles.text}>Attempts used: {5-attemptsLeft}</Text>
+          <Image style={{width: 100, height:100, alignSelf:'center'}} source={{uri:`https://picsum.photos/id/${secretNumber}/100/100`}}/>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
             <MyButton title="New Game" onPress={handleNewGame}/>
           </View>
@@ -164,8 +164,8 @@ function handleNewGame(){
     return (
       <Card>
           <Header>The Game is Over!</Header>
-          <Image style={{width: 100, height:100}} source={require('../assets/sadSmile.jpg')}/>
-          <Text>{gameOverMessage}</Text>
+          <Image style={{width: 140, height:140, alignSelf:'center'}} source={require('../assets/sadSmile.jpg')}/>
+          <Text style={styles.text}>{gameOverMessage}</Text>
         </Card>
     )
   }
@@ -194,11 +194,13 @@ function handleNewGame(){
   }
   
   return (
-    <View>
+    <View style={styles.container}>
         <View style={{alignItems:'flex-end'}}>
           <MyButton title="Restart" onPress={handleRestart}/>
         </View>
+        <View>
         {rightCard()}
+        </View>
         
     </View>
      
@@ -210,24 +212,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'grey',
+    justifyContent: 'center',
  
   },
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 300,
-  },
   hint: {
-    color: 'red',
-    fontSize: 20,
+    margin:5,
+    fontSize: 15,
     textAlign: 'center'
   },
   note: {
+    margin:5,
     color: 'blue',
     fontSize: 10,
     textAlign: 'center'
+  },
+  text:{
+    margin:5,
+    fontSize: 20,
+
+
   }
 });
 
