@@ -15,7 +15,7 @@ function handleGoBack(){
 
 
   return (
-    <View>
+    
     <Modal visible={props.modalVisible} transparent={true}>
     <View style={styles.confirmModal}>
     
@@ -29,7 +29,7 @@ function handleGoBack(){
       
     </View>
     </Modal>
-    </View>
+    
     
    
   )
@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
     backgroundColor:'lightgrey',
     borderRadius:10,
     height:'50%',
+    alignSelf:'center',
+    marginTop:'50%',
   },
 });
 

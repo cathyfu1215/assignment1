@@ -8,6 +8,7 @@ import { useState } from 'react';
 import MyButton from '../components/MyButton';
 import { StyleSheet } from 'react-native';
 import Confirm from './Confirm';
+import Header from '../components/Header';
 
 function Start(props) {
     const [isChecked, setChecked] = useState(false);
@@ -71,7 +72,7 @@ function Start(props) {
     I clear the error message and return true
     */
     function validateEmail(){
-        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$/;
         if(inputEmail && regex.test(inputEmail)){
             setErrorEmail('');
             setEmailValid(true);
@@ -87,7 +88,7 @@ function Start(props) {
 
   return (
     <View style={styles.container}>
-         <Text>Welcome</Text>
+         <Header>Welcome</Header>
          <Card>
               <Text>Name</Text>
               <TextInput onChangeText={newText => setInputName(newText)}

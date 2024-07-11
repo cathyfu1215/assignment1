@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { TextInput,Alert } from 'react-native'
 import { Image } from 'react-native'
 import { useEffect } from 'react'
+import Header from '../components/Header'
 
 function Game(props) {
 
@@ -40,7 +41,6 @@ function Game(props) {
   }, [timeLeft]);
 
   function handleRestart(){
-    console.log('handle restart')
     props.setHasUser(false);
   }
 
@@ -114,7 +114,7 @@ function handleNewGame(){
     console.log('secret number: ', secretNumber);
     return (
       <Card>
-          <Text>Guess A Number Between 1 & 100</Text>
+          <Header>Guess A Number Between 1 & 100</Header>
           <TextInput value={textInput} onChangeText={(textInput)=>setTextInput(textInput)}
                       onEndEditing={(textInput)=>verifyInput(textInput)} placeholder='enter your guess'/>
           <Text>{hint}</Text>
@@ -131,7 +131,7 @@ function handleNewGame(){
   function guessedWrongCard(){
     return (
       <Card>
-          <Text>Guess Wrong</Text>
+          <Header>Guess Wrong</Header>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
             <MyButton title="Guess Again" onPress={handleGuessAgain}/>
             <MyButton title="End the Game" onPress={handleEndGame}/>
@@ -143,7 +143,7 @@ function handleNewGame(){
   function winCard(){
     return (
       <Card>
-          <Text>You Guessed Correct!</Text>
+          <Header>You Guessed Correct!</Header>
           <Text>Attempts used: {5-attemptsLeft}</Text>
           <Image style={{width: 100, height:100}} source={{uri:`https://picsum.photos/id/${secretNumber}/100/100`}}/>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
@@ -156,7 +156,7 @@ function handleNewGame(){
   function loseCard(){
     return (
       <Card>
-          <Text>The Game is Over!</Text>
+          <Header>The Game is Over!</Header>
           <Image style={{width: 100, height:100}} source={require('../assets/sadSmile.jpg')}/>
           <Text>{gameOverMessage}</Text>
         </Card>
@@ -176,6 +176,13 @@ function handleNewGame(){
     }
     if(gameState === 'lose'){
       return loseCard();
+    }
+    else{
+      return (
+        <Card>
+          <Text>Something went wrong</Text>
+        </Card>
+      )
     }
   }
   
