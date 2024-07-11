@@ -6,6 +6,7 @@ import MyButton from '../components/MyButton'
 import { useState } from 'react'
 import { TextInput,Alert } from 'react-native'
 import { Image } from 'react-native'
+import { useEffect } from 'react'
 
 function Game(props) {
 
@@ -21,6 +22,22 @@ function Game(props) {
   const [textInput, setTextInput] = useState('');
 
   const [gameOverMessage, setGameOverMessage] = useState('');
+
+  /*
+  This block is written by copilot, because I don't know how to use useEffect to set up a timer
+   */
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timerId = setInterval(() => {
+        setTimeLeft(timeLeft => timeLeft - 1);
+      }, 1000);
+      return () => clearInterval(timerId);
+    } else {
+      setGameOverMessage('Time is up');
+      setGameState('lose');
+      
+    }
+  }, [timeLeft]);
 
   function handleRestart(){
     console.log('handle restart')
