@@ -19,10 +19,10 @@ function handleGoBack(){
     <Modal visible={props.modalVisible} transparent={true}>
     <View style={styles.confirmModal}>
     
-      <Text>Hello {props.name}</Text>
-      <Text>Here is the email that you entered:{props.email}</Text>
-      <Text>If it is not correct, please go back and enter again.</Text>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <Text style={styles.confirmText}>Hello {props.name}</Text>
+      <Text style={styles.confirmText}>Here is the email that you entered:{props.email}</Text>
+      <Text style={styles.confirmText}>If it is not correct, please go back and enter again.</Text>
+      <View style={styles.buttonContainer}>
             <MyButton  onPress={handleGoBack} title="Go back"/>
             <MyButton  onPress={handleContinue} title="Continue"/>
       </View>
@@ -52,13 +52,23 @@ const styles = StyleSheet.create({
   confirmModal:{
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'rgba(0,0,0,0.8)',
+    backgroundColor:'rgba(200,100,200,0.8)',
     borderRadius:10,
     height:'50%',
     alignSelf:'center',
     marginTop:'50%',
     
   },
+  confirmText:{
+    color:'white',
+    fontSize:15,
+    margin:5,
+    fontWeight:'bold'
+  },
+  buttonContainer:{
+     flexDirection: 'row', 
+     alignItems: 'center' 
+  }
 });
 
 export default Confirm
