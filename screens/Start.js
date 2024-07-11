@@ -90,22 +90,22 @@ function Start(props) {
     <View style={styles.container}>
          <Header>Welcome</Header>
          <Card>
-              <Text>Name</Text>
+              <Text style={styles.text}>Name</Text>
               <TextInput onChangeText={newText => setInputName(newText)}
                          value={inputName}
                          onBlur={validateName}/>
               <Text>{errorName}</Text>
-              <Text>Email</Text>
+              <Text style={styles.text}>Email</Text>
               <TextInput onChangeText={newText => setInputEmail(newText)}
                          value={inputEmail}
                          onBlur={validateEmail}/>
               <Text>{errorEmail}</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Checkbox value={isChecked} onValueChange={setChecked} />
-                <Text>I am not a robot</Text>
+                <Text style={styles.text}>I am not a robot</Text>
               </View>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={styles.buttonContainer}>
               <MyButton  onPress={handleReset} title="Reset"/>
               <MyButton  onPress={handleStart} title="Start" disabled ={!isChecked}/>
               </View>
@@ -118,13 +118,34 @@ function Start(props) {
   )
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    });
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: '#fff',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+        hint: {
+          margin:5,
+          fontSize: 15,
+          textAlign: 'center'
+        },
+        note: {
+          margin:5,
+          color: 'blue',
+          fontSize: 10,
+          textAlign: 'center'
+        },
+        text:{
+          margin:5,
+          fontSize: 20,
+        },
+        buttonContainer: {
+            flexDirection: 'row', 
+            alignItems: 'center',
+            margin:5,
+            padding:5
+        },
+      });
 
 export default Start

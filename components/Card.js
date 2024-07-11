@@ -5,7 +5,6 @@ import { View } from 'react-native'
 function Card(props) {
   return (
     <View style={styles.card}>
-         
          {props.children}
     </View>
      
@@ -19,8 +18,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   card:{
-    padding:10,
-    margin:10,
+    padding:20,
+    margin:20,
     backgroundColor:'lightblue',
     borderRadius:10,
     alignContent:'center',
