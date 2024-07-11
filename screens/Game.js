@@ -4,9 +4,9 @@ import Card from '../components/Card'
 import { View } from 'react-native'
 import MyButton from '../components/MyButton'
 import { useState } from 'react'
-import { TextInput } from 'react-native-web'
+import { TextInput } from 'react-native'
 
-function Game() {
+function Game(props) {
 
   const [gameState,setGameState] = useState('guessing');// 'guessing', 'guessedWrong','win','lose'
 
@@ -17,9 +17,12 @@ function Game() {
   const [attemptsLeft, setAttemptsLeft] = useState(4);
   const [timeLeft, setTimeLeft] = useState(60);
 
+  const [textInput, setTextInput] = useState('');
+
 
   function handleRestart(){
     console.log('handle restart')
+
   }
 
   function handleHint(){
@@ -30,11 +33,34 @@ function Game() {
     console.log('handle submit guess')
   }
 
+
+  function verifyInput(){
+    // if the text cannot be converted to a number
+    if(isNaN(textInput)){
+      setTextInput('');
+      //create an alert that says 'Please enter a number'
+      alert('please enter a number')
+    }
+    else{
+      // if the number is not between 1 and 100
+      if(parseInt(textInput) < 1 || parseInt(textInput) > 100){
+        setTextInput('');
+        //create an alert that says 'Please enter a number between 1 and 100'
+        alert('Please enter a number between 1 and 100');
+      }
+      else{
+        setUserGuess(parseInt(textInput));
+        console.log('user guess: ', parseInt(textInput));
+      }
+    }
+  }
+
   function guessingCard(){
     return (
       <Card>
           <Text>Guess A Number Between 1 & 100</Text>
-          <TextInput placeholder="" />
+          <TextInput value={textInput} onChangeText={(textInput)=>setTextInput(textInput)}
+                      onEndEditing={(textInput)=>verifyInput(textInput)} placeholder='enter your guess'/>
           <Text>Attempts left: {attemptsLeft}</Text>
           <Text>Timer: {timeLeft}</Text>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
@@ -49,7 +75,6 @@ function Game() {
     return (
       <Card>
           <Text>Guess Wrong</Text>
-          <TextInput placeholder="" />
           <Text>Attempts left: {attemptsLeft}</Text>
           <Text>Timer: {timeLeft}</Text>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>

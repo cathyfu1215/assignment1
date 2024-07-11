@@ -6,7 +6,8 @@ import Game from './screens/Game';
 
 
 export default function App() {
-  const [hasUser, setHasUser] = useState(false);
+  // for testing purposes, I set hasUser to true
+  const [hasUser, setHasUser] = useState(true);
   
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
