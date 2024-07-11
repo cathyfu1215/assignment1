@@ -37,7 +37,11 @@ function Game(props) {
       return () => clearInterval(timerId);
     } else {
       setGameOverMessage('Time is up');
+
+      // if the user has not guessed the number, set the game state to lose when the counter reaches 0
+      if(gameState !== 'win'){
       setGameState('lose');
+      }
       
     }
   }, [timeLeft]);
@@ -48,10 +52,10 @@ function Game(props) {
 
   function handleHint(){
     if(secretNumber <=50){
-      setHint('The number is between 1 and 50');
+      setHint('The number is between 1 and 50.See console for the secret number');
     }
     else{
-      setHint('The number is between 51 and 100');
+      setHint('The number is between 51 and 100.See console for the secret number');
     }
   }
 

@@ -32,9 +32,7 @@ export default function App() {
   
   return (
     <View style={styles.container}>
-      {
-        rightScreen()
-      }
+      {rightScreen()}
       <StatusBar style="auto" />
     </View>
   );
