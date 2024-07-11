@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
     margin:10,
     backgroundColor:'lightblue',
     borderRadius:10,
+    alignContent:'center',
+    alignSelf:'center',
   }
 });
 

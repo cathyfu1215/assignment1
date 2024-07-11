@@ -8,6 +8,7 @@ import { TextInput,Alert } from 'react-native'
 import { Image } from 'react-native'
 import { useEffect } from 'react'
 import Header from '../components/Header'
+import { StyleSheet } from 'react-native'
 
 function Game(props) {
 
@@ -25,6 +26,7 @@ function Game(props) {
   const [gameOverMessage, setGameOverMessage] = useState('');
 
   /*
+  The timer block
   This block is written by copilot, because I don't know how to use useEffect to set up a timer
    */
   useEffect(() => {
@@ -54,7 +56,9 @@ function Game(props) {
   }
 
   function handleSubmitGuess(){
-    if(userGuess === secretNumber){
+    
+    console.log('user guess: ', userGuess);
+    if(parseInt(userGuess) == secretNumber){
       setGameState('win');
     }
     else{
@@ -115,9 +119,12 @@ function handleNewGame(){
     return (
       <Card>
           <Header>Guess A Number Between 1 & 100</Header>
+          <Text style={styles.note}>Note: please hit 'return' on your keyboard after entering the number, because 
+            I used onEndEditing to verify the input.
+          </Text>
           <TextInput value={textInput} onChangeText={(textInput)=>setTextInput(textInput)}
                       onEndEditing={(textInput)=>verifyInput(textInput)} placeholder='enter your guess'/>
-          <Text>{hint}</Text>
+          <Text style={styles.hint}>{hint}</Text>
           <Text>Attempts left: {attemptsLeft}</Text>
           <Text>Timer: {timeLeft}</Text>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
@@ -198,5 +205,30 @@ function handleNewGame(){
     
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'grey',
+ 
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 300,
+  },
+  hint: {
+    color: 'red',
+    fontSize: 20,
+    textAlign: 'center'
+  },
+  note: {
+    color: 'blue',
+    fontSize: 10,
+    textAlign: 'center'
+  }
+});
 
 export default Game

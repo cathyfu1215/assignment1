@@ -3,12 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import Start from './screens/Start';
 import Game from './screens/Game';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 
 export default function App() {
-  // for testing purposes, I set hasUser to true
-  const [hasUser, setHasUser] = useState(true);
   
+  //for test purpose, I set hasUser to true
+  const [hasUser, setHasUser] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   
@@ -30,6 +32,11 @@ export default function App() {
   
   return (
     <View style={styles.container}>
+     {/* <LinearGradient
+        // Background Linear Gradient
+        colors={['yellow', 'white']}
+        style={styles.background}
+    /> */}
       {
         rightScreen()
       }
@@ -41,8 +48,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'grey',
+ 
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 300,
   },
 });

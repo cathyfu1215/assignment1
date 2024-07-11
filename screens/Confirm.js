@@ -52,11 +52,12 @@ const styles = StyleSheet.create({
   confirmModal:{
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'lightgrey',
+    backgroundColor:'rgba(0,0,0,0.8)',
     borderRadius:10,
     height:'50%',
     alignSelf:'center',
     marginTop:'50%',
+    
   },
 });
 
