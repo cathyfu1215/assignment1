@@ -1,19 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import Start from './screens/Start';
 import Game from './screens/Game';
-import { LinearGradient } from 'expo-linear-gradient';
-
-
+import Background from './components/Background';
 
 export default function App() {
-  
-  //for test purpose, I set hasUser to true
+  //for test purpose, set hasUser to true
   const [hasUser, setHasUser] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  
   
   const rightScreen = () => {
     // the conditional rendering
@@ -29,22 +25,22 @@ export default function App() {
     
   }
   
-  
   return (
-    <View style={styles.container}>
-      {
-        rightScreen()
-      }
-      <StatusBar style="auto" />
-    </View>
+    
+      <SafeAreaView style={styles.container}>
+        <Background>
+        {rightScreen()}
+        </Background>
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    
+    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'grey',
- 
+    borderColor: 'black',
   },
- 
 });
