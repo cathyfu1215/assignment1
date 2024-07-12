@@ -127,7 +127,8 @@ function handleNewGame(){
             I used onEndEditing to verify the input.
           </Text>
           <TextInput value={textInput} onChangeText={(textInput)=>setTextInput(textInput)}
-                      onEndEditing={(textInput)=>verifyInput(textInput)} placeholder='enter your guess'/>
+                      onEndEditing={(textInput)=>verifyInput(textInput)} placeholder='enter your guess'
+                      style={styles.textInputStyle}/>
           <Text style={styles.hint}>{hint}</Text>
           <Text style={styles.text}>Attempts left: {attemptsLeft}</Text>
           <Text style={styles.text}>Timer: {timeLeft}</Text>
@@ -142,7 +143,7 @@ function handleNewGame(){
   function guessedWrongCard(){
     return (
       <Card>
-          <Header>Guess Wrong</Header>
+          <Header>You didn't guess correctly!</Header>
           <View style={{ flexDirection: 'column', alignItems: 'center' }}>
             <MyButton title="Guess Again" onPress={handleGuessAgain}/>
             <MyButton title="End the Game" onPress={handleEndGame}/>

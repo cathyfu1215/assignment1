@@ -97,5 +97,14 @@ export const styles = StyleSheet.create({
          flexDirection: 'row', 
          alignItems: 'center' 
       },
+      textInputStyle:{
+        borderWidth:1, 
+        borderBlockEndColor:colors.black, 
+        borderLeftColor:'rgba(255,255,255,0.8)',
+        borderRightColor:'rgba(255,255,255,0.8)',
+        borderTopColor:'rgba(255,255,255,0.8)',
+        height:40,
+        margin:10,
+      }
 
 });

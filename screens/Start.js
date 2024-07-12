@@ -93,12 +93,14 @@ function Start(props) {
               <Text style={styles.text}>Name</Text>
               <TextInput onChangeText={newText => setInputName(newText)}
                          value={inputName}
-                         onBlur={validateName}/>
+                         onBlur={validateName}
+                         style={styles.textInputStyle}/>
               <Text>{errorName}</Text>
               <Text style={styles.text}>Email</Text>
               <TextInput onChangeText={newText => setInputEmail(newText)}
                          value={inputEmail}
-                         onBlur={validateEmail}/>
+                         onBlur={validateEmail}
+                         style={styles.textInputStyle}/>
               <Text>{errorEmail}</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Checkbox value={isChecked} onValueChange={setChecked} />
