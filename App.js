@@ -10,7 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function App() {
   
   //for test purpose, I set hasUser to true
-  const [hasUser, setHasUser] = useState(true);
+  const [hasUser, setHasUser] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   
@@ -32,7 +32,9 @@ export default function App() {
   
   return (
     <View style={styles.container}>
-      {rightScreen()}
+      {
+        rightScreen()
+      }
       <StatusBar style="auto" />
     </View>
   );
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'grey',
+ 
   },
  
 });

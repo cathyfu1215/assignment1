@@ -11,12 +11,7 @@ function Card(props) {
   )
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
   card:{
     padding:20,
     margin:20,
@@ -24,6 +19,7 @@ const styles = StyleSheet.create({
     borderRadius:10,
     alignContent:'center',
     alignSelf:'center',
+    boxShadow: '5px 10px',
   }
 });
 
