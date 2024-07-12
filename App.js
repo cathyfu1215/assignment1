@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Start from './screens/Start';
 import Game from './screens/Game';
 import Background from './components/Background';
+import { styles } from './screens/styleHelper';
 
 export default function App() {
   //for test purpose, set hasUser to true
@@ -27,7 +28,7 @@ export default function App() {
   
   return (
     
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.appContainer}>
         <Background>
         {rightScreen()}
         </Background>
@@ -38,9 +39,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    borderColor: 'black',
-  },
-});
+

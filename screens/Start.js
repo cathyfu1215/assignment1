@@ -6,9 +6,9 @@ import {TextInput } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { useState } from 'react';
 import MyButton from '../components/MyButton';
-import { StyleSheet } from 'react-native';
 import Confirm from './Confirm';
 import Header from '../components/Header';
+import { styles } from './styleHelper';
 
 function Start(props) {
     const [isChecked, setChecked] = useState(false);
@@ -87,7 +87,7 @@ function Start(props) {
     }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.startContainer}>
          <Header>Welcome</Header>
          <Card>
               <Text style={styles.text}>Name</Text>
@@ -105,7 +105,7 @@ function Start(props) {
                 <Text style={styles.text}>I am not a robot</Text>
               </View>
 
-              <View style={styles.buttonContainer}>
+              <View style={styles.startButtonContainer}>
               <MyButton  onPress={handleReset} title="Reset"/>
               <MyButton  onPress={handleStart} title="Start" disabled ={!isChecked}/>
               </View>
@@ -118,33 +118,5 @@ function Start(props) {
   )
 }
 
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-        hint: {
-          margin:5,
-          fontSize: 15,
-          textAlign: 'center'
-        },
-        note: {
-          margin:5,
-          color: 'blue',
-          fontSize: 10,
-          textAlign: 'center'
-        },
-        text:{
-          margin:5,
-          fontSize: 20,
-        },
-        buttonContainer: {
-            flexDirection: 'row', 
-            alignItems: 'center',
-            margin:5,
-            padding:5
-        },
-      });
 
 export default Start

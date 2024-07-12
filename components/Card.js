@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import { View } from 'react-native'
+import { styles } from '../screens/styleHelper'
 
 function Card(props) {
   return (
@@ -10,18 +10,7 @@ function Card(props) {
      
   )
 }
-const styles = StyleSheet.create({
 
-  card:{
-    padding:20,
-    margin:20,
-    backgroundColor:'rgba(255,255,255,0.8)',
-    borderRadius:10,
-    alignContent:'center',
-    alignSelf:'center',
-    boxShadow: '5px 10px',
-  }
-});
 
 
 export default Card

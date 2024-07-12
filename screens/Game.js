@@ -8,7 +8,7 @@ import { TextInput,Alert } from 'react-native'
 import { Image } from 'react-native'
 import { useEffect } from 'react'
 import Header from '../components/Header'
-import { StyleSheet } from 'react-native'
+import {colors, styles} from './styleHelper';
 
 function Game(props) {
 
@@ -198,7 +198,7 @@ function handleNewGame(){
   }
   
   return (
-    <View style={styles.container}>
+    <View style={styles.gameContainer}>
         <View style={{alignItems:'flex-end'}}>
           <MyButton title="Restart" onPress={handleRestart}/>
         </View>
@@ -211,30 +211,5 @@ function handleNewGame(){
     
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
- 
-  },
-  hint: {
-    margin:5,
-    fontSize: 15,
-    textAlign: 'center'
-  },
-  note: {
-    margin:5,
-    color: 'blue',
-    fontSize: 10,
-    textAlign: 'center'
-  },
-  text:{
-    margin:5,
-    fontSize: 20,
-
-
-  }
-});
 
 export default Game
