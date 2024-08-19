@@ -1,20 +1,42 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import Start from './screens/Start';
+import Game from './screens/Game';
+import Background from './components/Background';
+import { styles } from './screens/styleHelper';
 
 export default function App() {
+  //for test purpose, set hasUser to true
+  const [hasUser, setHasUser] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  
+  const rightScreen = () => {
+    // the conditional rendering
+    if(hasUser === false){
+      return <Start name = {name} email={email}
+                    setName={setName} setEmail={setEmail}
+                    setHasUser={setHasUser}/>
+    }
+    
+    else{
+      return <Game setHasUser={setHasUser}/>
+    }
+    
+  }
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    
+      <SafeAreaView style={styles.appContainer}>
+        <Background>
+        {rightScreen()}
+        </Background>
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    
+    
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
